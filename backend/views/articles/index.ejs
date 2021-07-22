@@ -21,6 +21,60 @@
     />
     <link rel="stylesheet" href="./css/style.css">
 </head>
+<style>
+    .overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+    transition: opacity 500ms;
+    display: none;
+   }
+   
+  .popup {
+    margin: 90px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 5px;
+    width: 30%;
+    position: relative;
+    transition: all 5s ease-in-out;
+  }
+  
+  .popup h2 {
+    margin-top: 0;
+    color: #333;
+    font-family: Tahoma, Arial, sans-serif;
+  }
+  .popup .close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    transition: all 200ms;
+    font-size: 30px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #333;
+  }
+  .popup .close:hover {
+    color: rgba(29, 210, 177, 0.7);
+  }
+  .popup .content {
+    max-height: 30%;
+    overflow: auto;
+  }
+  
+  @media screen and (max-width: 700px){
+    .box{
+      width: 70%;
+    }
+    .popup{
+      width: 70%;
+    }
+}
+</style>
 <body>
 
     <div class="container">
@@ -109,20 +163,31 @@ const login = ()=>{
         password:document.getElementById("passwordlogin").value,
     }
     console.log(obj);
-    fetch('http://localhost:3000/api/user/login',{
+    fetch('/api/user/login',{
     method: 'POST', // or 'PUT'
     headers: {
-      'Content-Type': 'application/json',
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
     },
     body:JSON.stringify(obj),
   })
-  .then(response => response.json())
-  .then(data =>{
-    var link="http://localhost:3000/articles"; 
-    console.log(data);
-    localStorage.setItem("auth_token", data.auth_token);
-    window.location.href=link;
-});
+  .then(async response => {
+ await   response.json().then(d=>{
+        console.log(d);
+        localStorage.setItem("auth_token", d.auth_token);
+        window.location.href="/articles";
+    }).catch(err=>{
+        console.log(err);
+        localStorage.removeItem("auth_token");
+        window.location.href="/";
+    })
+  })
+
+//   .then(data =>{
+//     console.log(data);
+//     // localStorage.setItem("auth_token", data.auth_token);
+//     // window.location.href=link;
+// });
 }
 
 const callviaback = ()=>{

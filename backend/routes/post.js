@@ -1,9 +1,17 @@
 const router=require('express').Router();
 const verify=require('./verifyToken');
 const Articlenew = require('../model/article');
+const verifytoken=require('./VerifyMytokenNow');
 // router.get('/new', verify , (req,res) =>{
 //     res.render('articles/new')
 //     });    
+
+router.get('/verify',verify,verifytoken);
+
+ router.get('/articles', async (req,res)=>{
+    const articles = await Article.find().sort({ createdAt: 'desc' })
+    res.render('articles/blog',{articles: articles});
+ })
 
 
 router.get('/new', (req,res) =>{

@@ -19,6 +19,25 @@
     rel="stylesheet"
     />
     <title>Document</title>
+    <script>
+      function checkForToken(){
+        fetch('/articles/verify',{
+  method: 'GET', // or 'PUT'
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': `${localStorage.getItem("auth_token")}`
+  },
+})
+.then(response => response.json())
+.then(data =>{ console.log(data)
+  if(!data.status){
+    // window.location.href = "/" 
+  }
+});
+      }
+      window.onload = checkForToken;
+      </script>
+
 </head>
 <body>
   
@@ -35,9 +54,8 @@
           
           <div class="my-3 d-flex align-items-center justify-content-between">
             <div class="d-flex align-items-center">
-            <img src="https://avatars0.githubusercontent.com/u/39916324?s=460&u=602ca47fcce463981a2511a21148236f304ec934&v=4" style="width: 50px;"/>
             <small class="ml-2">
-              <a href="#" class="text-primary d-block">Ahmad Sultani</a>
+              <a href="#" class="text-primary d-block">John Doe</a>
               <span><%= article.createdAt.toLocaleDateString() %></span>
             </small>
           </div>
@@ -47,11 +65,12 @@
             </div>
           </div>
           </div>
-        <img class="w-100 my-3" src="https://api.time.com/wp-content/uploads/2020/07/never-trumpers-2020-election-01.jpg?quality=85&w=1201&h=676&crop=1" />
+        <!-- <img class="w-100 my-3" src="../../../assets/images/blogphoto.png" /> -->
         
         <div style="max-width: 700px; top: -80px;" class="mx-auto text-secondary">  
           <p class="my-2" style="line-height: 2;"><%= article.description %></p>
           <hr>      
         </div>
+
 </body>
 </html>
