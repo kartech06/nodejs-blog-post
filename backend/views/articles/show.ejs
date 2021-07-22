@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/editblog.css">
+    <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+    rel="stylesheet"
+    />
+    <!-- Google Fonts --><link
+    href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+    rel="stylesheet"
+    />
+    <!-- MDB -->
+    <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.css"
+    rel="stylesheet"
+    />
+    <title>Document</title>
+</head>
+<body>
+  
+    <div class="container my-5">
+        <div style="max-width: 700px; top: -80px;" class="mx-auto text-secondary">
+          <div>
+              <small>
+                <a href="#" class="text-primary"><%= article.tags %></a>
+            </small>
+          </div>
+          <h1 class="font-weight-bold text-dark">
+            <%= article.title %>
+         </h1>
+          
+          <div class="my-3 d-flex align-items-center justify-content-between">
+            <div class="d-flex align-items-center">
+            <img src="https://avatars0.githubusercontent.com/u/39916324?s=460&u=602ca47fcce463981a2511a21148236f304ec934&v=4" style="width: 50px;"/>
+            <small class="ml-2">
+              <a href="#" class="text-primary d-block">Ahmad Sultani</a>
+              <span><%= article.createdAt.toLocaleDateString() %></span>
+            </small>
+          </div>
+            <div class="text-primary">
+              <a href="/articles/edit/<%= article.id %>" class="btn btn-primary"><i class="fas fa-edit mr-1"></i>Edit</a>
+              <a href="/articles" class="btn btn-primary"><i class="fas fa-blog mr-1"></i>All Post</a>
+            </div>
+          </div>
+          </div>
+        <img class="w-100 my-3" src="https://api.time.com/wp-content/uploads/2020/07/never-trumpers-2020-election-01.jpg?quality=85&w=1201&h=676&crop=1" />
+        
+        <div style="max-width: 700px; top: -80px;" class="mx-auto text-secondary">  
+          <p class="my-2" style="line-height: 2;"><%= article.description %></p>
+          <hr>      
+        </div>
+</body>
+</html>

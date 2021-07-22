@@ -1,0 +1,26 @@
+<div class="form-floating mb-3">
+    <input type="text" class="form-control" value="<%= article.title  %>" id="floatingInput" placeholder="Title" required name="title">
+    <label for="floatingInput">Title</label>
+  </div>    
+  <div class="form-floating mb-3">
+    <select class="form-select" id="floatingSelect" required aria-label="Floating label select example" name="tags">
+        <option value="technology">Technology</option>
+        <option value="entertainment">Entertainment</option>
+        <option value="news">News</option>
+        <option value="travel">Travel</option>
+        <option value="business">Business</option>
+    </select>
+    <label for="floatingSelect">Choose the tags</label>
+  </div>    
+  <div class="form-floating mb-3">
+    <textarea class="form-control" required placeholder="Add Your Description" id="floatingTextarea2" style="height: 100px" name="description">
+        <%= article.description %>
+    </textarea>
+    <label for="floatingTextarea2">Description</label>
+  </div>
+  <div class="text-primary mt-2">
+    <input type="submit" class="btn btn-lg btn-primary" name="form1" id="form1" ></input>
+    <a href="/" type="button" class="btn btn-secondary btn-lg">Cancel</a>
+ </div>          
+              
+  <hr class="my-4">
